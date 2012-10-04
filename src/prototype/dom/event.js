@@ -1401,7 +1401,7 @@
     try {
       document.documentElement.doScroll('left');
     } catch (e) {
-      TIMER = pollDoScroll.defer();
+      TIMER = pollDoScroll.delay(0.01);
       return;
     }
     
@@ -1423,7 +1423,7 @@
     document.addEventListener('DOMContentLoaded', fireContentLoadedEvent, false);
   } else {
     document.attachEvent('onreadystatechange', checkReadyState);
-    if (window == top) TIMER = pollDoScroll.defer();
+    if (window == top) TIMER = pollDoScroll.delay(0.01);
   }
   
   // Worst-case fallback.
