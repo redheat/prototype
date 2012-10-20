@@ -127,6 +127,10 @@ var Form = {
         return result + (result ? "&" : "") + values.map(function (value) {
           // Normalize newlines as \r\n because the HTML spec says newlines should
           // be encoded as CRLFs.
+          // There is a bug here with <select multiple>.
+          if (value && value.join)
+            value = value.join('\r\n');
+
           value = value.gsub(/(\r)?\n/, '\r\n');
           value = encodeURIComponent(value);
           // According to the spec, spaces should be '+' rather than '%20'.
